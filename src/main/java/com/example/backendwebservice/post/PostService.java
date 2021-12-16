@@ -16,7 +16,7 @@ import java.util.Collection;
 @Service
 @AllArgsConstructor
 public class PostService {
-//contains the logic i the system
+    //contains the logic i the system
     @Autowired
     PostRepository postRepository;
     @Autowired
@@ -27,7 +27,7 @@ public class PostService {
     //create, save and return the post
     public PostCreate createPost(@RequestHeader("token") String token, @RequestBody Post post) {
         User user = userService.validate(token);
-        if(user == null){
+        if (user == null) {
             return null;
         }
         Post exists = postRepository.get(user.getUsername());
@@ -46,16 +46,16 @@ public class PostService {
         }
     }
 
-    public Collection<PostCreate> getAllPosts(){
+    public Collection<PostCreate> getAllPosts() {
         Collection<Post> posts = postRepository.getPosts();
         Collection<PostCreate> postCreates = new ArrayList<>();
-        for(Post post : posts){
+        for (Post post : posts) {
             postCreates.add(new PostCreate(post.getTitle(), post.getContent()));
         }
         return postCreates;
     }
 
-    public Post getInfo(String name){
+    public Post getInfo(String name) {
         return postRepository.get(name);
     }
 
@@ -69,22 +69,16 @@ public class PostService {
         }
     }
 
-    public String deletePost(String title, Post username){
-        Post exists = postRepository.get(title);
-        if (exists != null) {
-            if (username.equals(exists.getUsername())) {
-                return postRepository.delete(title);
-            } else {
-                return "Nothing to delete";
-            }
-        } else {
-            return "This post can not be deleted by you";
-        }
+    public boolean deletePost(String title) {
+        if (postRepository.get(title) == null)
+            return false;
+        postRepository.remove(title);
+        return true;
     }
 
-    public boolean updatePost(String title, Post updatePost){
+    public boolean updatePost(String title, Post updatePost) {
         Post post = postRepository.get(title);
-        if(post == null)
+        if (post == null)
             return false;
         post.setTitle(updatePost.getTitle());
         post.setContent(updatePost.getContent());

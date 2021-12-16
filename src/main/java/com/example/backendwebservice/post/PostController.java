@@ -97,19 +97,12 @@ public class PostController {
         return postService.updatePost(title, updatePost);
     }
 
-    //getToken
-    @DeleteMapping("/delete{title}")
-    public String deletePost(@RequestHeader("token") String token, @PathVariable String title, @RequestBody Post post, HttpServletResponse response) {
-        if(token != null){
-            String deleted = postService.deletePost(title, post);
-            if (userService.validate(token).equals(deleted))
-                response.setStatus(200);
-            else
-                response.setStatus(401);
-            return deleted;
-        } else {
-            response.setStatus(401);
-            return "You are unauthorized to delete this post.";
+    @DeleteMapping("/delete/{title}")
+    public String deletePost(@RequestHeader("token") String token, @PathVariable String title, HttpServletResponse response) {
+        if(!postService.deletePost(title)){
+            response.setStatus(404);
+            return "No";
         }
+        return "Yes it is deleted!";
     }
 }

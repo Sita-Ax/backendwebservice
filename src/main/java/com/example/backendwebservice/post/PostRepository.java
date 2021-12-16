@@ -19,8 +19,8 @@ public class PostRepository {
     }
 
     //remove depend on the name, set toLowerCase if the add is both big and small letters
-    public void remove(Post post){
-        posts.remove(post.getTitle().toLowerCase());
+    public void remove(String title){
+        posts.remove(title.toLowerCase());
     }
 
     //return the collection(lists)
@@ -42,8 +42,8 @@ public class PostRepository {
 //        return get(name, post);
 //    }
 
-    public String delete(String tile) {
-        posts.remove(tile.toLowerCase());
+    public String delete(String title) {
+        posts.remove(title.toLowerCase());
         return "Post has been deleted";
     }
 

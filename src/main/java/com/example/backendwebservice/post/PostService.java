@@ -16,7 +16,7 @@ import java.util.Collection;
 @Service
 @AllArgsConstructor
 public class PostService {
-    //contains the logic i the system
+
     @Autowired
     PostRepository postRepository;
     @Autowired
@@ -24,7 +24,6 @@ public class PostService {
     @Autowired
     UserService userService;
 
-    //create, save and return the post
     public PostCreate createPost(@RequestHeader("token") String token, @RequestBody Post post) {
         User user = userService.validate(token);
         if (user == null) {
@@ -91,7 +90,6 @@ public class PostService {
         Post post = postRepository.get(title);
         if (post == null)
             return 1;
-
         user.getFavorites().add(post);
         return 0;
     }

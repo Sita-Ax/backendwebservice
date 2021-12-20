@@ -27,7 +27,6 @@ public class UserService {
         this.postRepository = postRepository;
     }
 
-    //existing take the username and password that is hashed
     public int registerUser(User user) {
         User existing = userRepository.getUser(user.getUsername());
         if (existing != null)
@@ -39,7 +38,6 @@ public class UserService {
         return 0;
     }
 
-    //loggedIn with username and password,
     public String login(String username, String password) {
         User user = userRepository.findUser(username);
         if (user == null)
@@ -65,7 +63,6 @@ public class UserService {
         return Math.random() + "jdekjdke" + Math.random() + ((char) (Math.random() * 100));
     }
 
-    //get one user
     public User getUser(String username) {
         return userRepository.getUser(username);
     }

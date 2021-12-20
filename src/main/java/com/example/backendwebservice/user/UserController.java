@@ -14,7 +14,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //Create a user
     @PutMapping("/register")
     public String registerUser(@RequestBody User user, HttpServletResponse response) {
         int choice = userService.registerUser(user);
@@ -31,7 +30,6 @@ public class UserController {
         }
     }
 
-    //Get the username and password ok
     @PostMapping("/login")
     public String login(@RequestHeader("username") String username, @RequestHeader("password") String password, HttpServletResponse response) {
         String token = userService.login(username, password);
@@ -42,13 +40,11 @@ public class UserController {
         return token;
     }
 
-    //Get 200 OK and the text ///DOESN'T WORK
     @PostMapping("/logout")
     public void logout(@RequestHeader("token") String token) {
         userService.logout(token);
     }
 
-    //Get all users ok
     @GetMapping("/all")
     public Collection<User> getUsers() {
         return userService.getAll();

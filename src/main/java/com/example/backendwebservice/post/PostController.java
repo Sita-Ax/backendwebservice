@@ -14,13 +14,12 @@ import java.util.List;
 @RequestMapping("/post")
 @CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
-//presentation layer
+
     @Autowired
     UserService userService;
     @Autowired
     PostService postService;
 
-    //this is working creates a token, creates a new object Post //return Post(title-table), content and id but the likes is null
     @PutMapping("/create")
     public PostCreate createPost(@RequestHeader("token") String token, @RequestBody Post post, HttpServletResponse response) {
         if (userService.validate(token) == null) {
@@ -34,7 +33,6 @@ public class PostController {
         return postService.createPost(token, post);
     }
 
-    //works an array with title, content, id, likes, nolikes
     @GetMapping("/all")
     public Collection<PostCreate> getAllPosts() {
         return postService.getAllPosts();

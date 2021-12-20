@@ -10,7 +10,6 @@ import lombok.Setter;
 @Data
 public class PostCreate {
     private String id, title, content, username;
-    //makes automatic an enum
     private Category category;
     private String hyperLink;
 

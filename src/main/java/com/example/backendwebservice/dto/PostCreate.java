@@ -1,6 +1,5 @@
 package com.example.backendwebservice.dto;
 
-import com.example.backendwebservice.Category;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +8,11 @@ import lombok.Setter;
 @Setter
 @Data
 public class PostCreate {
-    private String id, title, content, username;
-    private Category category;
+    private String id, title, content, category, username;
     private String hyperLink;
 
 
-    public PostCreate(String title, String content) {
+    public PostCreate(String title, String content, String category, String username) {
         this.id = title;
         this.title = title;
         this.content = content;

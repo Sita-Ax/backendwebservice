@@ -27,7 +27,7 @@ public class PostController {
             return null;
         }
         System.out.println(post + "post");
-        if(post.getTitle() == null || post.getContent() == null|| post.getUsername() == null|| post.getCategory() == null){
+        if(post.getTitle() == null || post.getContent() == null|| post.getCategory() == null|| post.getUsername() == null){
             response.setStatus(400);
         }
         return postService.createPost(token, post);

@@ -1,6 +1,5 @@
 package com.example.backendwebservice.post;
 
-import com.example.backendwebservice.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,13 +11,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
-    private String id, title, content, username;
-    //this is an enum
-    private Category category;
+    private String id, title, content, category, username;
     private List<Integer> likes;
     private List<Integer> noLikes;
 
-    public Post(String title, String content) {
+    public Post(String title, String content, String category) {
         this.id = title;
         this.title = title;
         this.content = content;

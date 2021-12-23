@@ -31,7 +31,7 @@ public class PostService {
         }
         Post exists = postRepository.get(user.getUsername());
         if (exists == null) {
-            PostCreate postCreate = new PostCreate(post.getTitle(), post.getContent());
+            PostCreate postCreate = new PostCreate(post.getTitle(), post.getContent(), post.getCategory(), post.getUsername());
             postCreate.setId(post.getId());
             postCreate.setTitle(post.getTitle());
             postCreate.setContent(post.getContent());
@@ -49,7 +49,7 @@ public class PostService {
         Collection<Post> posts = postRepository.getPosts();
         Collection<PostCreate> postCreates = new ArrayList<>();
         for (Post post : posts) {
-            postCreates.add(new PostCreate(post.getTitle(), post.getContent()));
+            postCreates.add(new PostCreate(post.getTitle(), post.getContent(), post.getCategory(), post.getUsername()));
         }
         return postCreates;
     }
@@ -61,7 +61,7 @@ public class PostService {
     public PostCreate getPost(String title) {
         Post exists = postRepository.get(title);
         if (exists != null) {
-            PostCreate postCreate = new PostCreate(exists.getTitle(), exists.getContent());
+            PostCreate postCreate = new PostCreate(exists.getTitle(), exists.getContent(), exists.getCategory(), exists.getUsername());
             return postCreate;
         } else {
             return null;
